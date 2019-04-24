@@ -68,7 +68,7 @@ public class AuthController {
 	};
 
 	private Route updatePassword = (Request req, Response resp) -> {
-		if (!validate(req, resp)) return resp.status();
+		if (!validateAndRotate(req, resp)) return resp.status();
 
 
 		final User userUpReq = new Gson().fromJson(req.body(), User.class);
@@ -119,7 +119,7 @@ public class AuthController {
 
 	};
 
-	private boolean validate(Request req, Response resp) throws AuthorizationException {
+	private boolean validateAndRotate(Request req, Response resp) throws AuthorizationException {
 		final String authToken = req.headers("X-WEX-AuthToken");
 		final AuthorizationToken theToken;
 		try{
@@ -128,6 +128,11 @@ public class AuthController {
 			resp.status(403);
 			return false;
 		}
+
+
+        final AuthorizationToken token = authManager.rotateAuthToken(theToken);
+
+		resp.header("X-WEX-AuthToken",token.getAuthToken());
 		
 		return true;
 	}
