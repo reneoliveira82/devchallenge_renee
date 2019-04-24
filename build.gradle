@@ -17,8 +17,10 @@ dependencies {
 	implementation 'com.sparkjava:spark-core:2.+'
 	implementation 'com.google.code.gson:gson:2.+'
 	implementation 'com.google.inject:guice:4.+'
-	
-	runtime 'org.slf4j:slf4j-simple:+'
+   // implementation 'org.slf4j', name: 'slf4j-api', version: '1.7.26'
+
+
+     implementation 'org.slf4j:slf4j-simple:+'
 	
     // Use JUnit test framework
     testImplementation 'junit:junit:4.+'

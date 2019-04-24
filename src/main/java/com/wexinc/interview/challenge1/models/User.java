@@ -5,6 +5,7 @@ public class User {
 	private String name;
 	private String passHash;
 	private AccessLevel access;
+	private String newPassword;
 
 	public User(int id, String name, String passHash, AccessLevel access) {
 		super();
@@ -12,6 +13,7 @@ public class User {
 		this.name = name;
 		this.passHash = passHash;
 		this.access = access;
+		this.newPassword = newPassword;
 	}
 
 	public String getPassHash() {
@@ -34,8 +36,19 @@ public class User {
 		return id;
 	}
 
+	public void setId(int id) {
+		this.id = id;
+	}
+
 	public String getName() {
 		return name;
 	}
 
+	public String getNewPassword() {
+		return newPassword;
+	}
+
+	public void setNewPassword(String newPassword) {
+		this.newPassword = newPassword;
+	}
 }
