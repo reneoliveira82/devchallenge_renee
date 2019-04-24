@@ -49,11 +49,19 @@ public class ThreadsController {
 				json());
 
 		get(Path.OneThread, (req, resp) -> {
-			final int threadId = Integer.parseInt(req.params(":threadId"));
+			final int threadId;
+			try{
+				threadId = Integer.parseInt(req.params(":threadId"));
+			}catch(NumberFormatException ex){
+				resp.status(400);
+				return resp.status();
+			}
+
 			return threadRepo.get(threadId);
 		}, json());
 
 		post(Path.ThreadList, handleMessagePost, json());
+
 	}
 
 	private Route handleMessagePost = (Request req, Response resp) -> {
